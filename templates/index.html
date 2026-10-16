@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">TM</div>
+        <nav class="side-nav">
+            <a href="/" class="side-link active" title="Dashboard">⌂</a>
+            <a href="#task-table" class="side-link" title="Tasks">▤</a>
+            <a href="#task-table" class="side-link" title="Progress">◷</a>
+        </nav>
+        <div class="side-bottom">✦</div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">WORKSPACE / TASK MANAGEMENT</p>
+                <h1>My Tasks</h1>
+                <p class="subtitle">Manage your tasks and track your progress.</p>
+            </div>
+            <div class="user-profile">
+                <span class="avatar">A</span>
+                <span>Admin</span>
+            </div>
+        </header>
+
+        <section class="dashboard">
+            <div class="tabs">
+                <button class="tab active" data-category="Assigned">
+                    Assigned Tasks <span id="assigned-count">0</span>
+                </button>
+                <button class="tab" data-category="Accepted">
+                    Accepted Tasks <span id="accepted-count">0</span>
+                </button>
+                <button class="tab" data-category="Review">
+                    Review Tasks <span id="review-count">0</span>
+                </button>
+            </div>
+
+            <div class="toolbar">
+                <input id="search" type="search" placeholder="Search tasks...">
+                <div class="filters">
+                    <input id="date-filter" type="date" aria-label="Filter by due date">
+                    <select id="status-filter" aria-label="Filter by status">
+                        <option value="">All statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                    <button id="clear-filters" class="secondary-btn" type="button">
+                        Clear
+                    </button>
+                </div>
+                <button id="create-task-btn" class="primary-btn" type="button">
+                    + Create New Task
+                </button>
+            </div>
+
+            <form id="task-form" class="task-form" hidden>
+                <div class="form-header">
+                    <h2 id="form-heading">Create New Task</h2>
+                    <button type="button" id="cancel-form" class="close-btn">×</button>
+                </div>
+
+                <label for="title">Task Title *</label>
+                <input id="title" type="text" maxlength="200"
+                       placeholder="Enter task title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" rows="3"
+                          placeholder="Enter task details"></textarea>
+
+                <div class="form-grid">
+                    <div>
+                        <label for="deadline">Due Date</label>
+                        <input id="deadline" type="date">
+                    </div>
+                    <div>
+                        <label for="priority">Priority</label>
+                        <select id="priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category">Task Category</label>
+                        <select id="category">
+                            <option value="Assigned">Assigned</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Review">Review</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancel-form-2" class="secondary-btn">
+                        Cancel
+                    </button>
+                    <button type="submit" class="primary-btn" id="save-task-btn">
+                        Save Task
+                    </button>
+                </div>
+            </form>
+
+            <div class="table-heading">
+                <div>
+                    <h2 id="current-category">Assigned Tasks</h2>
+                    <p>Review and manage your task list.</p>
+                </div>
+                <span class="list-label">TASK OVERVIEW</span>
+            </div>
+
+            <p id="message" role="status" aria-live="polite"></p>
+
+            <div class="table-wrap" id="task-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task Title</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Created By</th>
+                            <th>Due Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list">
+                        <tr><td colspan="6">Loading tasks...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>Task Manager · Plan smart. Work better.</footer>
+    </main>
+    <script src="/static/script.js"></script>
+</body>
+</html>
